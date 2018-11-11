@@ -55,24 +55,26 @@ export default ({
     <Grid item sm>
     
       <Paper style={styles.Paper}>
-      {exercise.map(item => {
+      <Grid container>
+      {exercise.map((item, index) => {
         return (
-            <Fragment  key={item.id}>
-        <Typography
-          variant="display1"
-        >
-          {item.title}
-        </Typography>
-        <Typography
-          variant="subheading"
-          style={{marginTop: 20}}
-        >
-          {item.description}
-        </Typography>
-        <Button onClick={() => onDelete(item.id)} color="secondary">Delete</Button>
-        </Fragment>
+        <Grid item sm='4' key={index}>
+            <Typography
+                variant="display1"
+            >
+                {item.title}
+            </Typography>
+            <Typography
+                variant="subheading"
+                style={{marginTop: 20}}
+            >
+                {item.description}
+            </Typography>
+            <Button onClick={() => onDelete(index)} color="secondary">Delete</Button>
+        </Grid>
                 )
             })}
+            </Grid>
       </Paper>
 
     </Grid>

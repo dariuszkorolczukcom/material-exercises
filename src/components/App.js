@@ -8,6 +8,9 @@ export default class extends Component {
     exercises,
     exercise: []
   }
+  generateKey = (pre) => {
+    return `${ pre }_${ new Date().getTime().toString(16) }`;
+}
 
   getExercisesByMuscles() {
     return Object.entries(
@@ -30,8 +33,9 @@ export default class extends Component {
 
   handleExerciseSelected = id => {
     let exercisesHolder = this.state.exercise;
-    let execiseNew = exercises.find(ex => ex.id === id);
-    exercisesHolder.push(execiseNew);
+    let exerciseNew = exercises.find(ex => ex.id === id);
+    exerciseNew.uniqueId = this.generateKey('exercise');
+    exercisesHolder.push(exerciseNew);
     this.setState(({ exercises }) => ({
       exercise: exercisesHolder
     }))
@@ -39,9 +43,9 @@ export default class extends Component {
 
   handleExerciseDeleted = (id) => {
     let exercisesHolder = this.state.exercise;
-    let execiseNew = exercisesHolder.filter((item) => item.id !== id);
+    exercisesHolder.splice(id,1);
     this.setState(({ exercises }) => ({
-      exercise: execiseNew
+      exercise: exercisesHolder
     }))
   }
 
