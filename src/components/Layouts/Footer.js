@@ -19,7 +19,7 @@ export default ({ muscles, category, onSelect }) => {
       textColor="primary"
       centered
     >
-      <Tab label="All" key={0}/>
+      <Tab label="All" key={0} />
       {muscles.map(group =>
         <Tab key={group} label={group} />
       )}
